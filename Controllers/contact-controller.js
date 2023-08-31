@@ -51,7 +51,7 @@ const createContact = asyncHandler(async (req, res) => {
         name, email, phone
     })
     res.json({
-        msg: "Contacts", method: req.method, body: req.body, contact: newContact
+        msg: "Contacts", method: req.method, contact: newContact
     })
 })
 
@@ -62,7 +62,6 @@ const createContact = asyncHandler(async (req, res) => {
  * @route PUT /api/contact/:id
  */
 const updateContact = asyncHandler(async (req, res) => {
-
     const updatedContact = await Contact.findByIdAndUpdate(req.params.id,
         req.body, {
         new: true
@@ -75,8 +74,6 @@ const updateContact = asyncHandler(async (req, res) => {
     res.json({
         msg: "Updated Successfully", method: req.method, id: req.params.id, updatedContact
     })
-
-
 })
 
 /**

@@ -5,8 +5,9 @@ const errorHandler = require('./Middleware/errorHandler')
 dotenv.config()
 const connectDB = require('./Config/db-connection')
 
+// Connect To Mongo DB
 connectDB()
-// console.log("connect")
+
 const port = process.env.PORT || 5000
 const app = express();
 
@@ -15,12 +16,13 @@ const app = express();
 // Allow Routers To Get Date Form Body as JSON
 app.use(express.json())
 // Logger Middleware with Morgan 
-// app.use(logger("dev"))
+app.use(logger("dev"))
 app.use(express.urlencoded({ extended: true }))
 
 
 // Router 
-app.use("/api/contacts", require("./routes/contact-route"))
+app.use("/api/contacts", require("./routes/contact-route"));
+app.use("/api/user", require("./routes/user-route"));
 
 
 
