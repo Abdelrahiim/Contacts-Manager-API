@@ -50,7 +50,7 @@ const userRegister = asyncHandler(async (req, res) => {
  * @access public
  */
 const userLogin = asyncHandler(async (req, res) => {
-    const { email, password } = req.body ;
+    const { email, password } = req.body;
 
     if (!email || !password) {
         res.status(400);
@@ -67,7 +67,7 @@ const userLogin = asyncHandler(async (req, res) => {
                 id: user._id,
             }
         }, process.env.SECRET_KEY, {
-            expiresIn: "5m"
+            expiresIn: "30m"
         })
         res.status(200)
         res.json({ token })
@@ -77,8 +77,11 @@ const userLogin = asyncHandler(async (req, res) => {
     }
 })
 
+const currentUser = asyncHandler(async (req, res) => {
+    
+    res.json(req.user);
+});
 
 
 
-
-module.exports = { userRegister, userLogin }
+module.exports = { userRegister, userLogin, currentUser }
